@@ -1,87 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Registration Form</title>
+    <title>String Occurrence</title>
 </head>
 
 <body>
 
-    <h2>User Registration Form</h2>
+    <h2>Find Occurrence of a String</h2>
 
-    <form onsubmit="return validateForm()">
+    <label>Enter a string:</label><br>
+    <input type="text" id="mainString">
 
-        Name:
-        <input type="text" id="name">
-        <br><br>
+    <br><br>
 
-        Address:
-        <textarea id="address"></textarea>
-        <br><br>
+    <label>Enter string to search:</label><br>
+    <input type="text" id="searchString">
 
-        Date of Birth:
-        <input type="date" id="dob">
-        <br><br>
+    <br><br>
 
-        Phone Number:
-        <input type="text" id="phone">
-        <br><br>
+    <button onclick="findOccurrence()">Find Occurrence</button>
 
-        <input type="submit" value="Register">
+    <br><br>
 
-    </form>
+    <h3>Your result is:</h3>
 
-    <p id="message"></p>
+    <div id="result" style="border: 1px solid black; padding: 15px; width: 400px;">
+        Result will be displayed here
+    </div>
 
 
     <script>
 
-        function validateForm() {
+        function findOccurrence() {
 
-            // Get input values
-            let name = document.getElementById("name").value.trim();
-            let address = document.getElementById("address").value.trim();
-            let dob = document.getElementById("dob").value;
-            let phone = document.getElementById("phone").value.trim();
+            let mainString = document.getElementById("mainString").value;
+            let searchString = document.getElementById("searchString").value;
 
-            // Name validation
-            if (name == "") {
-                document.getElementById("message").innerHTML =
-                    "Name cannot be empty.";
-                return false;
+            if (mainString == "" || searchString == "") {
+                document.getElementById("result").innerHTML =
+                    "Please enter both strings.";
+                return;
             }
 
-            if (name.length < 3) {
-                document.getElementById("message").innerHTML =
-                    "Name must contain at least 3 characters.";
-                return false;
+            let count = 0;
+            let position = 0;
+
+            // Find occurrence of searchString
+            while ((position = mainString.indexOf(searchString, position)) != -1) {
+                count++;
+                position = position + searchString.length;
             }
 
-            // Address validation
-            if (address == "") {
-                document.getElementById("message").innerHTML =
-                    "Address cannot be empty.";
-                return false;
+            if (count > 0) {
+                document.getElementById("result").innerHTML =
+                    "The string \"" + searchString + "\" occurs " +
+                    count + " time(s).";
+            } else {
+                document.getElementById("result").innerHTML =
+                    "The given string was not found.";
             }
-
-            // Date of Birth validation
-            if (dob == "") {
-                document.getElementById("message").innerHTML =
-                    "Please select your Date of Birth.";
-                return false;
-            }
-
-            // Phone number validation
-            if (!/^\d{10}$/.test(phone)) {
-                document.getElementById("message").innerHTML =
-                    "Phone number must contain exactly 10 digits.";
-                return false;
-            }
-
-            // Successful validation
-            document.getElementById("message").innerHTML =
-                "Registration successful!";
-
-            return false;
         }
 
     </script>
