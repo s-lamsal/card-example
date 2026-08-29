@@ -1,75 +1,29 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>String Occurrence</title>
+    <title>Mouse Events</title>
 </head>
 
 <body>
 
-    <h2>Find Occurrence and Position of String</h2>
-
-    <label>Enter a string:</label><br>
-    <input type="text" id="mainString">
-
-    <br><br>
-
-    <label>Enter string to search:</label><br>
-    <input type="text" id="searchString">
-
-    <br><br>
-
-    <button onclick="findOccurrence()">Find Occurrence</button>
-
-    <br><br>
-
-    <h3>Your result is:</h3>
-
-    <div id="result" style="border: 1px solid black; padding: 15px; width: 400px;">
-        Result will be displayed here
-    </div>
+    <h2
+        style="color: red;"
+        onmouseover="changeColorGreen(this)"
+        onmouseout="changeColorYellow(this)"
+    >
+        Saroj
+    </h2>
 
 
     <script>
 
-        function findOccurrence() {
+        function changeColorGreen(element) {
+            element.style.color = "green";
+        }
 
-            let mainString = document.getElementById("mainString").value;
-            let searchString = document.getElementById("searchString").value;
-
-            if (mainString == "" || searchString == "") {
-                document.getElementById("result").innerHTML =
-                    "Please enter both strings.";
-                return;
-            }
-
-            let count = 0;
-            let position = 0;
-            let positions = [];
-
-            // Find all occurrences
-            while ((position = mainString.indexOf(searchString, position)) != -1) {
-
-                count++;
-
-                // Store position
-                positions.push(position);
-
-                // Move to next position
-                position = position + searchString.length;
-            }
-
-            if (count > 0) {
-
-                document.getElementById("result").innerHTML =
-                    "String: " + searchString + "<br>" +
-                    "Number of Occurrences: " + count + "<br>" +
-                    "Position(s): " + positions.join(", ");
-
-            } else {
-
-                document.getElementById("result").innerHTML =
-                    "The given string was not found.";
-            }
+        function changeColorYellow(element) {
+            element.style.color = "yellow";
         }
 
     </script>
