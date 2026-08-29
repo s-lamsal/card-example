@@ -2,31 +2,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mouse Events</title>
+    <title>Mouse Events using jQuery</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
 
-    <h2
-        style="color: red;"
-        onmouseover="changeColorGreen(this)"
-        onmouseout="changeColorYellow(this)"
-    >
+    <h2 id="myName" style="color: red;">
         Saroj
     </h2>
 
 
     <script>
 
-        function changeColorGreen(element) {
-            element.style.color = "green";
-        }
+        $("#myName").mouseover(function() {
+            $(this).css("color", "green");
+        });
 
-        function changeColorYellow(element) {
-            element.style.color = "yellow";
-        }
+
+        $("#myName").mouseout(function() {
+            $(this).css("color", "yellow");
+        });
 
     </script>
 
 </body>
 </html>
+
