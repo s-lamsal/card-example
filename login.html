@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+
+    <h2>Login</h2>
+
+    <form onsubmit="login(); return false;">
+
+        <label>ID:</label><br>
+        <input type="text" id="userId" required>
+
+        <br><br>
+
+        <label>Password:</label><br>
+        <input type="password" id="password" required>
+
+        <br><br>
+
+        <button type="submit">Sign In</button>
+
+    </form>
+
+
+    <script>
+
+        function login() {
+
+            let userId = document.getElementById("userId").value;
+            let password = document.getElementById("password").value;
+
+            // Store login credentials
+            localStorage.setItem("userId", userId);
+            localStorage.setItem("password", password);
+
+            // Go to registered users page
+            window.location.href = "registered.html";
+        }
+
+    </script>
+
+</body>
+</html>

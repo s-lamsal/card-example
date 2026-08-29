@@ -1,87 +1,60 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Mouse Events using jQuery</title>
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>User Registration</title>
 </head>
 
 <body>
 
-    <h2 id="myName" style="color: red;">
-        SAMIN THAPA
-    </h2>
+    <h2>User Registration</h2>
 
-    
+    <form onsubmit="registerUser(); return false;">
 
-    <h3>Enter RGB Values</h3>
+        <label>Name:</label><br>
+        <input type="text" id="name" required>
 
-    <label>Red (0-255):</label>
-    <input type="number" id="red" min="0" max="255">
+        <br><br>
 
-    <br><br>
+        <label>Address:</label><br>
+        <input type="text" id="address" required>
 
-    <label>Green (0-255):</label>
-    <input type="number" id="green" min="0" max="255">
+        <br><br>
 
-    <br><br>
+        <label>Date of Birth:</label><br>
+        <input type="date" id="dob" required>
 
-    <label>Blue (0-255):</label>
-    <input type="number" id="blue" min="0" max="255">
+        <br><br>
 
-    <br><br>
+        <label>Phone:</label><br>
+        <input type="text" id="phone" required>
 
-    <button id="submit">Submit</button>
+        <br><br>
+
+        <button type="submit">Register</button>
+
+    </form>
 
 
     <script>
 
-        // Mouse over the name
-        $("#myName").mouseover(function() {
-            $(this).css("color", "green");
-        });
+        function registerUser() {
 
+            let name = document.getElementById("name").value;
+            let address = document.getElementById("address").value;
+            let dob = document.getElementById("dob").value;
+            let phone = document.getElementById("phone").value;
 
-        // Mouse out of the name
-        $("#myName").mouseout(function() {
-            $(this).css("color", "yellow");
-        });
+            // Store registration information
+            localStorage.setItem("name", name);
+            localStorage.setItem("address", address);
+            localStorage.setItem("dob", dob);
+            localStorage.setItem("phone", phone);
 
-
-        // Submit RGB values
-        $("#submit").click(function() {
-
-            let r = $("#red").val();
-            let g = $("#green").val();
-            let b = $("#blue").val();
-
-            // Check RGB values
-            if (r == "" || g == "" || b == "") {
-                alert("Please enter all RGB values.");
-                return;
-            }
-
-            if (r < 0 || r > 255 ||
-                g < 0 || g > 255 ||
-                b < 0 || b > 255) {
-
-                alert("RGB values must be between 0 and 255.");
-                return;
-            }
-
-            // Create RGB color
-            let rgbColor = "rgb(" + r + "," + g + "," + b + ")";
-
-            // Change the color of the name
-            $("#myName").css("color", rgbColor);
-
-        });
+            // Go to page 2
+            window.location.href = "p2.html";
+        }
 
     </script>
 
 </body>
-
 </html>

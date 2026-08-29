@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registered Users</title>
+</head>
+
+<body>
+
+    <h2>Registered Users</h2>
+
+    <p>ID: <span id="userId"></span></p>
+
+    <p>Password: <span id="password"></span></p>
+
+
+    <script>
+
+        document.getElementById("userId").innerHTML =
+            localStorage.getItem("userId");
+
+        document.getElementById("password").innerHTML =
+            localStorage.getItem("password");
+
+    </script>
+
+</body>
+</html>

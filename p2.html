@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registered Information</title>
+</head>
+
+<body>
+
+    <h2>Registered User Information</h2>
+
+    <p>Name: <span id="name"></span></p>
+    <p>Address: <span id="address"></span></p>
+    <p>Date of Birth: <span id="dob"></span></p>
+    <p>Phone: <span id="phone"></span></p>
+
+    <br>
+
+    <a href="login.html">Go to Login</a>
+
+
+    <script>
+
+        document.getElementById("name").innerHTML =
+            localStorage.getItem("name");
+
+        document.getElementById("address").innerHTML =
+            localStorage.getItem("address");
+
+        document.getElementById("dob").innerHTML =
+            localStorage.getItem("dob");
+
+        document.getElementById("phone").innerHTML =
+            localStorage.getItem("phone");
+
+    </script>
+
+</body>
+</html>
