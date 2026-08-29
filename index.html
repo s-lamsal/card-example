@@ -1,32 +1,88 @@
-
+```html
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Mouse Events using jQuery</title>
 
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
 
     <h2 id="myName" style="color: red;">
-        Samin
+        Saroj
     </h2>
+
+    <br>
+
+    <h3>Enter RGB Values</h3>
+
+    <label>Red (0-255):</label>
+    <input type="number" id="red" min="0" max="255">
+
+    <br><br>
+
+    <label>Green (0-255):</label>
+    <input type="number" id="green" min="0" max="255">
+
+    <br><br>
+
+    <label>Blue (0-255):</label>
+    <input type="number" id="blue" min="0" max="255">
+
+    <br><br>
+
+    <button id="submit">Submit</button>
 
 
     <script>
 
+        // Mouse over the name
         $("#myName").mouseover(function() {
             $(this).css("color", "green");
         });
 
 
+        // Mouse out of the name
         $("#myName").mouseout(function() {
-            $(this).css("color", "black");
+            $(this).css("color", "yellow");
+        });
+
+
+        // Submit RGB values
+        $("#submit").click(function() {
+
+            let r = $("#red").val();
+            let g = $("#green").val();
+            let b = $("#blue").val();
+
+            // Check RGB values
+            if (r == "" || g == "" || b == "") {
+                alert("Please enter all RGB values.");
+                return;
+            }
+
+            if (r < 0 || r > 255 ||
+                g < 0 || g > 255 ||
+                b < 0 || b > 255) {
+
+                alert("RGB values must be between 0 and 255.");
+                return;
+            }
+
+            // Create RGB color
+            let rgbColor = "rgb(" + r + "," + g + "," + b + ")";
+
+            // Change the color of the name
+            $("#myName").css("color", rgbColor);
+
         });
 
     </script>
 
 </body>
-</html>
 
+</html>
+```
