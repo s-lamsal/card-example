@@ -1,236 +1,140 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Operations</title>
 
-    <!-- jQuery CDN -->
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding-top: 50px;
-        }
-
-        .container {
-            width: 600px;
-            margin: auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px gray;
-        }
-
-        h1 {
-            color: #333;
-        }
-
-        .inputs {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 25px 0;
-        }
-
-        input {
-            width: 100px;
-            padding: 10px;
-            font-size: 16px;
-            text-align: center;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        h3 {
-            margin-bottom: 10px;
-        }
-
-        #result {
-            border: 2px solid #333;
-            min-height: 80px;
-            padding: 20px;
-            background-color: #fafafa;
-            font-size: 18px;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 
 <body>
 
-<div class="container">
+    <h2>Number Operations</h2>
 
-    <h1>Number Operations</h1>
+    <!-- Input fields -->
+    <input type="number" id="num1" placeholder="Enter number 1">
+    <input type="number" id="num2" placeholder="Enter number 2">
+    <input type="number" id="num3" placeholder="Enter number 3">
+    <input type="number" id="num4" placeholder="Enter number 4">
 
-    <!-- Four input fields -->
-    <div class="inputs">
-        <input type="number" id="num1" placeholder="Number 1">
-        <input type="number" id="num2" placeholder="Number 2">
-        <input type="number" id="num3" placeholder="Number 3">
-        <input type="number" id="num4" placeholder="Number 4">
-    </div>
+    <br><br>
 
-    <!-- Four buttons -->
-    <div class="buttons">
-        <button onclick="findLargest()">B1: Largest</button>
-        <button onclick="findSumAverage()">B2: Sum/Average</button>
-        <button onclick="findPrimes()">B3: Prime Numbers</button>
-        <button onclick="findSecondLargest()">B4: 2nd Largest</button>
-    </div>
+    <!-- Buttons -->
+    <button onclick="largest()">B1: Largest Number</button>
+    <button onclick="sumAverage()">B2: Sum / Average</button>
+    <button onclick="primeNumbers()">B3: Prime Numbers</button>
+    <button onclick="secondLargest()">B4: Second Largest</button>
 
-    <!-- Result heading and box -->
+    <br><br>
+
     <h3>Your results displayed here</h3>
 
-    <div id="result">
-        Results will appear here...
+    <div id="result" style="border:1px solid black; padding:20px; width:400px;">
+        Result will be displayed here
     </div>
 
-</div>
+
+    <script>
+
+        // Get four numbers
+        function getNumbers() {
+            let n1 = Number($("#num1").val());
+            let n2 = Number($("#num2").val());
+            let n3 = Number($("#num3").val());
+            let n4 = Number($("#num4").val());
+
+            return [n1, n2, n3, n4];
+        }
 
 
-<script>
+        // B1: Largest Number
+        function largest() {
+            let numbers = getNumbers();
 
-    // Function to get four numbers
-    function getNumbers() {
+            let max = Math.max(...numbers);
 
-        let n1 = Number($("#num1").val());
-        let n2 = Number($("#num2").val());
-        let n3 = Number($("#num3").val());
-        let n4 = Number($("#num4").val());
-
-        return [n1, n2, n3, n4];
-    }
+            $("#result").html("Largest Number = " + max);
+        }
 
 
-    // B1: Find Largest Number
-    function findLargest() {
+        // B2: Sum and Average
+        function sumAverage() {
+            let numbers = getNumbers();
 
-        let numbers = getNumbers();
+            let sum = numbers[0] + numbers[1] + numbers[2] + numbers[3];
+            let average = sum / 4;
 
-        let largest = Math.max(...numbers);
-
-        $("#result").html(
-            "Largest Number = <strong>" + largest + "</strong>"
-        );
-    }
-
-
-    // B2: Find Sum and Average
-    function findSumAverage() {
-
-        let numbers = getNumbers();
-
-        let sum = numbers[0] + numbers[1] + numbers[2] + numbers[3];
-
-        let average = sum / 4;
-
-        $("#result").html(
-            "Sum = <strong>" + sum + "</strong><br>" +
-            "Average = <strong>" + average + "</strong>"
-        );
-    }
+            $("#result").html(
+                "Sum = " + sum + "<br>" +
+                "Average = " + average
+            );
+        }
 
 
-    // B3: Find Prime Numbers
-    function findPrimes() {
+        // B3: Prime Numbers
+        function primeNumbers() {
+            let numbers = getNumbers();
+            let primes = [];
 
-        let numbers = getNumbers();
+            for (let i = 0; i < numbers.length; i++) {
 
-        let primes = [];
+                if (isPrime(numbers[i])) {
+                    primes.push(numbers[i]);
+                }
+            }
 
-        for (let i = 0; i < numbers.length; i++) {
-
-            let num = numbers[i];
-
-            if (isPrime(num)) {
-                primes.push(num);
+            if (primes.length > 0) {
+                $("#result").html(
+                    "Prime Numbers = " + primes.join(", ")
+                );
+            } else {
+                $("#result").html("No prime numbers found.");
             }
         }
 
-        if (primes.length > 0) {
-            $("#result").html(
-                "Prime Numbers = <strong>" + primes.join(", ") + "</strong>"
-            );
-        } else {
-            $("#result").html(
-                "There are no prime numbers."
-            );
-        }
-    }
 
+        // Check prime number
+        function isPrime(num) {
 
-    // Function to check whether a number is prime
-    function isPrime(num) {
-
-        if (num < 2) {
-            return false;
-        }
-
-        for (let i = 2; i <= Math.sqrt(num); i++) {
-
-            if (num % i === 0) {
+            if (num < 2) {
                 return false;
             }
+
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+
+                if (num % i == 0) {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
-        return true;
-    }
 
+        // B4: Second Largest Number
+        function secondLargest() {
+            let numbers = getNumbers();
 
-    // B4: Find Second Largest Number
-    function findSecondLargest() {
+            // Remove duplicate numbers
+            let unique = [...new Set(numbers)];
 
-        let numbers = getNumbers();
+            if (unique.length < 2) {
+                $("#result").html(
+                    "Second largest number does not exist."
+                );
+                return;
+            }
 
-        // Remove duplicate values
-        let uniqueNumbers = [...new Set(numbers)];
-
-        if (uniqueNumbers.length < 2) {
+            unique.sort(function(a, b) {
+                return b - a;
+            });
 
             $("#result").html(
-                "Second largest number does not exist."
+                "Second Largest Number = " + unique[1]
             );
-
-            return;
         }
 
-        uniqueNumbers.sort(function(a, b) {
-            return b - a;
-        });
-
-        let secondLargest = uniqueNumbers[1];
-
-        $("#result").html(
-            "Second Largest Number = <strong>" +
-            secondLargest +
-            "</strong>"
-        );
-    }
-
-</script>
+    </script>
 
 </body>
 </html>
