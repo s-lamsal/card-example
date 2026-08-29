@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,7 @@
 
 <body>
 
-    <h2>Find Occurrence of a String</h2>
+    <h2>Find Occurrence and Position of String</h2>
 
     <label>Enter a string:</label><br>
     <input type="text" id="mainString">
@@ -44,18 +45,29 @@
 
             let count = 0;
             let position = 0;
+            let positions = [];
 
-            // Find occurrence of searchString
+            // Find all occurrences
             while ((position = mainString.indexOf(searchString, position)) != -1) {
+
                 count++;
+
+                // Store position
+                positions.push(position);
+
+                // Move to next position
                 position = position + searchString.length;
             }
 
             if (count > 0) {
+
                 document.getElementById("result").innerHTML =
-                    "The string \"" + searchString + "\" occurs " +
-                    count + " time(s).";
+                    "String: " + searchString + "<br>" +
+                    "Number of Occurrences: " + count + "<br>" +
+                    "Position(s): " + positions.join(", ");
+
             } else {
+
                 document.getElementById("result").innerHTML =
                     "The given string was not found.";
             }
@@ -65,3 +77,4 @@
 
 </body>
 </html>
+```
